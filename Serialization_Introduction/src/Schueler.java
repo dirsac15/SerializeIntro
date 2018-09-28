@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author Sabrina
  */
-public class Schueler 
+public class Schueler implements Serializable
 {
     private String name;
     private LocalDate birthday;

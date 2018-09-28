@@ -2,8 +2,13 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -61,5 +66,23 @@ public class SchulerBL
         {
             System.out.format("%s %s\n", schueler.getName(), schueler.getBirthday());
         }
+    }
+    
+    public void serialsave(File f) throws FileNotFoundException, IOException
+    {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+        
+        for (Schueler schueler : klasse) {
+            oos.writeObject(schueler);
+        }
+        
+        oos.flush();
+        oos.close();
+          
+    }
+    
+    public void serialload()
+    {
+        
     }
 }
