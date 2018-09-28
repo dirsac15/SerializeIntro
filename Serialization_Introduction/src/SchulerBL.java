@@ -1,7 +1,10 @@
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /*
@@ -31,6 +34,7 @@ public class SchulerBL
             bw.write(s.getName());
             bw.write(";");
             bw.write(s.getBirthday().toString());
+            bw.newLine();
         }
         bw.flush();
         bw.close();
@@ -38,6 +42,24 @@ public class SchulerBL
     
     public void load(File f)throws Exception
     {
+        BufferedReader br = new BufferedReader(new FileReader(f));
         
+        String line = "";
+        
+        while((line = br.readLine()) != null)
+        {
+            String parts[] = line.split(";");
+            Schueler s = new Schueler(parts[0], LocalDate.parse(parts[1]));
+            
+        }
+        br.close();
+    }
+    
+    public void print()
+    {
+        for (Schueler schueler : klasse) 
+        {
+            System.out.format("%s %s\n", schueler.getName(), schueler.getBirthday());
+        }
     }
 }
